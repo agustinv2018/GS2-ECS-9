@@ -9,7 +9,7 @@ $json = file_get_contents('php://input', true);
 $req = json_decode($json);
 
 $m = 'El jugador debe ser mayor de edad';
-$m1 = 'El puesto Delantero no existe.';
+
 
 
 $resp = new NuevoResponse();
@@ -21,7 +21,7 @@ if ($req->Edad < 18) {
 }
 if ($req->Puesto != 'Delantero' && $req->Puesto != 'Defensor' && $req->Puesto != 'Arquero' && $req->Puesto != 'Mediocampista') {
     $resp->IsOk = false;
-    $resp->Mensaje[] = 'Delantero';
+    $resp->Mensaje[] = 'El puesto ' . $req->Puesto . ' no existe.';
 }
 
 echo json_encode($resp);
